@@ -32,9 +32,7 @@ jobs:
           pyinstaller
 
     - uses: actions/checkout@v2
-    - run: |
-        cd YARA-Matches-Correspondance-Array
-        pyinstaller -c -F --add-data "static:static" --icon=static/icon.ico -n ymca app.py
+    - run: pyinstaller -c -F --add-data "static:static" --icon=static/icon.ico -n ymca app.py
         
     - name: Upload release
       uses: actions/upload-artifact@v2
