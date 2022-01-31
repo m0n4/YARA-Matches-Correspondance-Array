@@ -17,23 +17,25 @@ jobs:
 
     - name: Install python
       uses: actions/setup-python@v2
-    - uses: syphar/restore-virtualenv@v1
-    
-    - name: Pip install
-      run: |
-        echo "VIRTUAL ENV:" $VIRTUAL_ENV
-        pip install --upgrade pip
-        python yara-validator/setup.py install
-        python -m pip install flask yara-python plyara pytablewriter[html] pyinstaller
+      uses: gabrielfalcao/pyenv-action@v5
+      with:
+        default: "${{ matrix.python }}"
+        command: |
+          echo "VIRTUAL ENV:" $VIRTUAL_ENV
+          python -m pip install -U pip     
+          python yara-validator/setup.py install
+          python -m pip install flask yara-python plyara pytablewriter[html] pyinstaller
 
     - name: checkout ymca
       uses: actions/checkout@v2
-      
-    - uses: actions/setup-python@v2
+
     - name: Build ymca      
-      run: |
-        echo "VIRTUAL ENV:" $VIRTUAL_ENV
-        pyinstaller -c -F --add-data "static:static" --icon=static/icon.ico -n ymca app.py
+      uses: gabrielfalcao/pyenv-action@v5
+      with:
+        default: "${{ matrix.python }}"
+        command: |
+          echo "VIRTUAL ENV:" $VIRTUAL_ENV
+          pyinstaller -c -F --add-data "static:static" --icon=static/icon.ico -n ymca app.py
         
     - name: Upload artifact
       uses: actions/upload-artifact@v2
