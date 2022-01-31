@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="css.css">
+  <link rel="icon" type="image/x-icon" href="icon.ico">
+</head>
+
+<body>
+  <div class="container my-4 p-5 bg-light">
+    <div class="row">
+      <div class="col">
+        <h2><img src="yara_icon.svg" alt="Bootstrap" width="32" height="32">Ruleset</h2>
+        <div class="input-group" onclick="trigger('rule')">
+          <span class="input-group-text">File</span>
+          <input type="text" class="form-control" id="rulePath">
+          <span class="input-group-text" id="ruleCnt"></span>
+        </div>
+      </div>
+      <div class="col">
+        <div>
+          <h2><img src="folder_plus.svg" alt="Bootstrap" width="32" height="32">Files</h2>
+        </div>
+        <div class="input-group" onclick="trigger('files')">
+          <span class="input-group-text">Folder</span>
+          <input type="text" class="form-control" id="filesPath">
+          <span class="input-group-text" id="filesCnt"></span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div id="draw"></div>
+    </div>
+  </div>
+  <script src="js.js"></script>
+</body>
+
+</html>
