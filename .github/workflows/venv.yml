@@ -37,7 +37,7 @@ jobs:
         name: ymca
         path: dist
 
-jobs:
+
   build_windows:
     runs-on: windows-latest
     steps:
