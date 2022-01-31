@@ -1,4 +1,4 @@
-name: continuous dev venv
+name: continuous dev
 
 on:
   push:
@@ -8,35 +8,29 @@ jobs:
   build_linux:
     runs-on: ubuntu-latest
     steps:
-     
+
+    - name: Checkout ymca
+      uses: actions/checkout@v2
+      
+    - name: Install python
+      uses: actions/setup-python@v2
+
     - name: Clone yara-validator
       uses: actions/checkout@v2
       with:
         repository: CIRCL/yara-validator
         path: yara-validator
 
-    - name: Install python
-      uses: actions/setup-python@v2
-    - uses: gabrielfalcao/pyenv-action@v5
-      with:
-        default: "${{ matrix.python }}"
-        command: |
-          echo "VIRTUAL ENV:" $VIRTUAL_ENV
-          python -m pip install -U pip     
-          python yara-validator/setup.py install
-          python -m pip install flask yara-python plyara pytablewriter[html] pyinstaller
-
-    - name: checkout ymca
-      uses: actions/checkout@v2
-
-    - name: Build ymca      
-      uses: gabrielfalcao/pyenv-action@v5
-      with:
-        default: "${{ matrix.python }}"
-        command: |
-          echo "VIRTUAL ENV:" $VIRTUAL_ENV
-          pyinstaller -c -F --add-data "static:static" --icon=static/icon.ico -n ymca app.py
-        
+    - name: Python Instals
+      run: |
+        pip install --upgrade pip
+        python -m venv env
+        source env/bin/activate
+        python yara-validator/setup.py install
+        python -m pip install flask yara-python plyara pytablewriter[html] pyinstaller
+        rm -rf yara-validator
+        pyinstaller -c -F --add-data "static:static" --icon=static/icon.ico -n ymca app.py
+ 
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
