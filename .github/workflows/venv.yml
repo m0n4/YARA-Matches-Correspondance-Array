@@ -36,3 +36,36 @@ jobs:
       with:
         name: ymca
         path: dist
+
+jobs:
+  build_windows:
+    runs-on: windows-latest
+    steps:
+
+    - name: Checkout ymca
+      uses: actions/checkout@v2
+      
+    - name: Install python
+      uses: actions/setup-python@v2
+
+    - name: Clone yara-validator
+      uses: actions/checkout@v2
+      with:
+        repository: CIRCL/yara-validator
+        path: yara-validator
+
+    - name: Python Instals
+      run: |
+        pip install --upgrade pip
+        python -m venv env
+        source env/bin/activate
+        python yara-validator/setup.py install
+        python -m pip install flask yara-python plyara pytablewriter[html] pyinstaller
+        rm -rf yara-validator
+        pyinstaller -c -F --add-data "static;static" --icon=static/icon.ico -n ymca.exe app.py
+ 
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: ymca.exe
+        path: dist
