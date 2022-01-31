@@ -1,0 +1,56 @@
+caption {
+    font-size: 1.2em;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    padding-top: 80px;
+    line-break: anywhere;
+}
+
+caption::before {
+    content: "{ }";
+    color: #CE1E07;
+    padding-right: 0.3em;
+  }
+
+th.rotate {
+    height: 140px;
+    white-space: nowrap;
+}
+
+th.rotate > div {
+    transform: 
+        translate(8px, 51px)
+        rotate(315deg);
+    width: 30px;
+}
+th.rotate > div > span {
+    padding: 5px 10px;
+}
+
+thead {
+    vertical-align: middle !important;
+    margin: 0 auto !important;
+}
+
+td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 8em;
+}
+
+td:hover {
+    overflow: visible; 
+    width: auto; 
+    white-space: normal;
+    word-break: break-all;
+}
+
+img {
+    margin: 0px 12px 8px 12px;
+}
+
+i {
+    color: #702020;
+}
