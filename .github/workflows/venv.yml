@@ -58,8 +58,8 @@ jobs:
       run: |
         pip install --upgrade pip
         pip install virtualenv
-        virtualenv env
-        .\venv\Scripts\activate.bat
+        virtualenv C:\temp\venv
+        C:\temp\venv\Scripts\activate.bat
         python yara-validator/setup.py install
         pip install flask yara-python plyara pytablewriter[html] pyinstaller
         rm -rf yara-validator
