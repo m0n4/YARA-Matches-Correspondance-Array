@@ -17,7 +17,7 @@ jobs:
 
     - name: Install python
       uses: actions/setup-python@v2
-      uses: gabrielfalcao/pyenv-action@v5
+    - uses: gabrielfalcao/pyenv-action@v5
       with:
         default: "${{ matrix.python }}"
         command: |
