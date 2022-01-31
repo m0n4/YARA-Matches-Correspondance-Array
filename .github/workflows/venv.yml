@@ -62,7 +62,6 @@ jobs:
         C:\temp\venv\Scripts\activate.bat
         python yara-validator/setup.py install
         pip install flask yara-python plyara pytablewriter[html] pyinstaller
-        rmdir yara-validator
         pyinstaller -c -F --add-data "static;static" --icon=static/icon.ico -n ymca.exe app.py
  
     - name: Upload artifact
