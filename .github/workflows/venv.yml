@@ -27,10 +27,10 @@ jobs:
         python -m venv env
         source env/bin/activate
         sudo python yara-validator/setup.py install
-        pip install flask yara-python plyara pytablewriter[html] pyinstaller
+        sudo pip install flask yara-python plyara pytablewriter[html] pyinstaller
         rm -rf yara-validator
         sudo pyinstaller -c -F --add-data "static:static" --icon=static/icon.ico -n ymca app.py
-        chmod 777 dist/ymca
+        sudo chmod 777 dist/ymca
  
     - name: Upload artifact
       uses: actions/upload-artifact@v2
