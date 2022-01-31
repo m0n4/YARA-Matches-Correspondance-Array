@@ -21,13 +21,13 @@ jobs:
         repository: CIRCL/yara-validator
         path: yara-validator
 
-    - name: Python Instals
+    - name: Pip Install
       run: |
         pip install --upgrade pip
         python -m venv env
         source env/bin/activate
         python yara-validator/setup.py install
-        python -m pip install flask yara-python plyara pytablewriter[html] pyinstaller
+        pip install flask yara-python plyara pytablewriter[html] pyinstaller
         rm -rf yara-validator
         pyinstaller -c -F --add-data "static:static" --icon=static/icon.ico -n ymca app.py
  
@@ -54,13 +54,14 @@ jobs:
         repository: CIRCL/yara-validator
         path: yara-validator
 
-    - name: Python Instals
+    - name: Pip Install
       run: |
         pip install --upgrade pip
-        python -m venv env
-        source env/bin/activate
+        pip install virtualenv
+        virtualenv env
+        .\venv\Scripts\activate
         python yara-validator/setup.py install
-        python -m pip install flask yara-python plyara pytablewriter[html] pyinstaller
+        pip install flask yara-python plyara pytablewriter[html] pyinstaller
         rm -rf yara-validator
         pyinstaller -c -F --add-data "static;static" --icon=static/icon.ico -n ymca.exe app.py
  
