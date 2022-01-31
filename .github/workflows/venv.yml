@@ -8,31 +8,29 @@ jobs:
   build_linux:
     runs-on: ubuntu-latest
     steps:
-
-    - name: Install python
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.10'
-        
+     
     - name: Clone yara-validator
       uses: actions/checkout@v2
       with:
         repository: CIRCL/yara-validator
         path: yara-validator
 
-    - name: Python Instals
+    - name: Install python
+      uses: actions/setup-python@v2
+    - uses: syphar/restore-virtualenv@v1
+    
+    - name: Pip install
       run: |
+        echo "VIRTUAL ENV:" $VIRTUAL_ENV
         pip install --upgrade pip
-        python -m venv env
-        source env/bin/activate
         python yara-validator/setup.py install
         python -m pip install flask yara-python plyara pytablewriter[html] pyinstaller
-        echo "VIRTUAL ENV:" $VIRTUAL_ENV
 
     - name: checkout ymca
       uses: actions/checkout@v2
       
-    - name: bluid ymca      
+    - uses: actions/setup-python@v2
+    - name: Build ymca      
       run: |
         echo "VIRTUAL ENV:" $VIRTUAL_ENV
         pyinstaller -c -F --add-data "static:static" --icon=static/icon.ico -n ymca app.py
