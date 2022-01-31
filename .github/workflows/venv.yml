@@ -1,4 +1,4 @@
-name: continuous dev
+name: continuous dev venv
 
 on:
   push:
