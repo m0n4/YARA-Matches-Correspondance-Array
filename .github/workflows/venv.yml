@@ -23,6 +23,7 @@ jobs:
 
     - name: Pip Install
       run: |
+        sudo apt install python-tk
         sudo python yara-validator/setup.py install
         sudo pip install flask yara-python plyara pytablewriter[html] pyinstaller
         rm -rf yara-validator
