@@ -26,6 +26,7 @@ jobs:
         pip install --upgrade pip
         python -m venv env
         source env/bin/activate
+        sudo pip install setuptools
         sudo python yara-validator/setup.py install
         sudo pip install flask yara-python plyara pytablewriter[html] pyinstaller
         rm -rf yara-validator
@@ -57,6 +58,7 @@ jobs:
 
     - name: Pip Install
       run: |
+        pip install setuptools
         python yara-validator/setup.py install
         pip install flask yara-python plyara pytablewriter[html] pyinstaller
         pyinstaller -c -F --add-data "static;static" --icon=static/icon.ico -n ymca.exe app.py
