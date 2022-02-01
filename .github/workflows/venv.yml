@@ -58,9 +58,6 @@ jobs:
     - name: Pip Install
       run: |
         pip install --upgrade pip
-        pip install virtualenv
-        virtualenv C:\temp\venv
-        C:\temp\venv\Scripts\activate.bat
         python yara-validator/setup.py install
         pip install flask yara-python plyara pytablewriter[html] pyinstaller
         pyinstaller -c -F --add-data "static;static" --icon=static/icon.ico -n ymca.exe app.py
