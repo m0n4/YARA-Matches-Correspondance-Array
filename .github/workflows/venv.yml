@@ -23,10 +23,12 @@ jobs:
 
     - name: Pip Install
       run: |
-        sudo apt install python-tk
-        sudo python yara-validator/setup.py install
-        sudo pip install flask yara-python plyara pytablewriter[html] pyinstaller
+        sudo apt install python-tk python3-tk -y
+        cd yara-validator/
+        sudo python setup.py install
+        cd ..
         rm -rf yara-validator
+        sudo pip install flask yara-python plyara pytablewriter[html] pyinstaller
         sudo pyinstaller -c -F --hidden-import=tkinter --add-data "static:static" --icon=static/icon.ico -n ymca app.py
         sudo chmod 777 dist/ymca
  
@@ -56,7 +58,9 @@ jobs:
     - name: Pip Install
       run: |
         pip install setuptools
-        python yara-validator/setup.py install
+        cd yara-validator/
+        python setup.py install
+        cd ..
         pip install flask yara-python plyara pytablewriter[html] pyinstaller
         pyinstaller -c -F --add-data "static;static" --icon=static/icon.ico -n ymca.exe app.py
  
