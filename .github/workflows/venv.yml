@@ -37,6 +37,7 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
+        tag_name: Linux
         files: dist/ymca
 
 
@@ -71,4 +72,5 @@ jobs:
     - name: Release
       uses: softprops/action-gh-release@v1
       with:
+        tag_name: Windows
         files: dist/ymca.exe
