@@ -34,11 +34,10 @@ jobs:
         sudo pyinstaller -c -F --add-data "static:static" -n ymca app.py
         sudo chmod 777 dist/ymca
  
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
+    - name: Release
+      uses: softprops/action-gh-release@v1
       with:
-        name: ymca
-        path: dist
+        files: dist/ymca
 
 
   build_windows:
@@ -69,8 +68,7 @@ jobs:
         pip install flask yara-python plyara pytablewriter[html] pyinstaller
         pyinstaller -c -F --add-data "static;static" --icon=static/icon.ico -n ymca.exe app.py
  
-    - name: Upload artifact
-      uses: actions/upload-artifact@v2
+    - name: Release
+      uses: softprops/action-gh-release@v1
       with:
-        name: ymca.exe
-        path: dist
+        files: dist/ymca.exe
