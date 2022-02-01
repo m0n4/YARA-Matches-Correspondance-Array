@@ -4,7 +4,7 @@ YMCA is a tool designed to help malware analysts write and update YARA rules.
 It displays a table to quickly see for each rule which patterns match a list of samples.
 
 YMCA aims to be a time-saver:
-- Download a release (Linux / Windows)
+- Download a release ([Linux](https://github.com/m0n4/YARA-Matches-Correspondance-Array/releases/tag/Linux) / [Windows](https://github.com/m0n4/YARA-Matches-Correspondance-Array/releases/tag/Windows))
 - Run it
 - A tab should open at [localhost:4449](http://localhost:4449/)
 
