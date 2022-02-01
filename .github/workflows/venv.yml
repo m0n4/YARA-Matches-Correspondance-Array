@@ -29,7 +29,7 @@ jobs:
         cd ..
         sudo rm -rf yara-validator
         sudo pip install flask yara-python plyara pytablewriter[html] pyinstaller
-        sudo pyinstaller -c -F --hidden-import=tkinter --add-data "static:static" --icon=static/icon.ico -n ymca app.py
+        sudo pyinstaller -c -F --add-data "static:static" -i static/icon.ico -n ymca app.py
         sudo chmod 777 dist/ymca
  
     - name: Upload artifact
