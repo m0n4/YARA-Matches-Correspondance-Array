@@ -21,15 +21,17 @@ jobs:
         repository: CIRCL/yara-validator
         path: yara-validator
 
-    - name: Pip Install
+    - name: Install dependencies
       run: |
-        sudo apt install python-tk python3-tk -y
+        python -m venv env
+        source env/bin/activate
+        sudo apt install python3-tk -y
         cd yara-validator/
         sudo python setup.py install
         cd ..
         sudo rm -rf yara-validator
         sudo pip install flask yara-python plyara pytablewriter[html] pyinstaller
-        sudo pyinstaller -c -F --add-data "static:static" -i static/icon.ico -n ymca app.py
+        sudo pyinstaller -c -F --add-data "static:static" -n ymca app.py
         sudo chmod 777 dist/ymca
  
     - name: Upload artifact
@@ -55,9 +57,12 @@ jobs:
         repository: CIRCL/yara-validator
         path: yara-validator
 
-    - name: Pip Install
+    - name: Install dependencies
       run: |
-        pip install setuptools
+        pip install --upgrade pip
+        pip install virtualenv
+        virtualenv C:\temp\venv
+        C:\temp\venv\Scripts\activate.bat
         cd yara-validator/
         python setup.py install
         cd ..
