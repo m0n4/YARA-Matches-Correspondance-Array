@@ -84,5 +84,6 @@ def tableHTML(files):
             for file in files:
                 lst.append(str(cntr.get(file, "")))
             writer.value_matrix.append(lst)
+            string["files"] = []
         table += writer.dumps()
     return table
