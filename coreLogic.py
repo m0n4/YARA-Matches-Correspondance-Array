@@ -58,6 +58,7 @@ def scanYARA(files):
 
 
 def tableHTML(files):
+    global rules
     table = ""
     writer = pytablewriter.HtmlTableWriter()
     filenames = []
@@ -79,8 +80,9 @@ def tableHTML(files):
             cntr = Counter(string["files"])
             lst = list()
             lst.append(string["name"])
+            pat = html.escape(string["value"].replace("\n", " "))
             mod = " <i>" + "  ".join(string.get("modifiers", "")) + "</i>"
-            lst.append(html.escape(string["value"]) + mod)
+            lst.append(pat + mod)
             for file in files:
                 lst.append(str(cntr.get(file, "")))
             writer.value_matrix.append(lst)
